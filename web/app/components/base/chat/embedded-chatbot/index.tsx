@@ -19,7 +19,7 @@ import Header from '@/app/components/base/chat/embedded-chatbot/header'
 import ChatWrapper from '@/app/components/base/chat/embedded-chatbot/chat-wrapper'
 import DifyLogo from '@/app/components/base/logo/dify-logo'
 import { BrainCircuit } from 'lucide-react'
-import cn from '@/lib/utils'
+import { cn } from "@/lib/utils"
 import useDocumentTitle from '@/hooks/use-document-title'
 import { useGlobalPublicStore } from '@/context/global-public-context'
 
@@ -58,9 +58,8 @@ const Chatbot = () => {
         <Header
           isMobile={isMobile}
           allowResetChat={allowResetChat}
-          title={site?.title || 'HSC English Pro'}
+          title={'HSC English Pro'}
           customerIcon={difyIcon}
-          theme={themeBuilder?.theme} // This might not be needed if we override styles
           onCreateNewChat={handleNewConversation}
         />
         <div className={cn('flex grow flex-col overflow-y-auto bg-background', isMobile && 'm-[0.5px] !h-[calc(100%_-_3rem)] rounded-2xl')}>
@@ -74,23 +73,6 @@ const Chatbot = () => {
           )}
         </div>
       </div>
-      {/* powered by - hidden for a cleaner look */}
-      {isMobile && !appData?.custom_config?.remove_webapp_brand && (
-        <div className='flex h-[60px] shrink-0 items-center pl-2 bg-background'>
-            <div className={cn(
-              'flex shrink-0 items-center gap-1.5 px-2',
-            )}>
-              <div className='system-2xs-medium-uppercase text-muted-foreground'>{t('share.chat.poweredBy')}</div>
-              {
-                systemFeatures.branding.enabled && systemFeatures.branding.workspace_logo
-                  ? <img src={systemFeatures.branding.workspace_logo} alt='logo' className='block h-5 w-auto' />
-                  : appData?.custom_config?.replace_webapp_logo
-                    ? <img src={`${appData?.custom_config?.replace_webapp_logo}`} alt='logo' className='block h-5 w-auto' />
-                    : <DifyLogo size='small' />
-              }
-            </div>
-        </div>
-      )}
     </div>
   )
 }
@@ -233,5 +215,3 @@ const EmbeddedChatbot = () => {
 }
 
 export default EmbeddedChatbot
-
-    
